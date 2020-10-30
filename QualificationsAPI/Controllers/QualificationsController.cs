@@ -60,10 +60,11 @@ namespace QualificationsAPI.Controllers
             return _mapper.Map<ActivityViewModel>(activity);
         }
 
-        [HttpGet("[action]")]
-        public async Task<ActionResult<IEnumerable<SubjectViewModel>>> GetSubjects()
+        [HttpGet("[action]/{userId}")]
+        public async Task<ActionResult<IEnumerable<SubjectViewModel>>> GetSubjects(string userId)
         {
-            List<Subject> subjects = await dbContext.Subjects.Include(s => s.Qualifications).ThenInclude(s => s.Activities).ToListAsync();
+            List<Subject> subjects = await dbContext.Subjects.Include(s => s.Qualifications).ThenInclude(s => s.Activities)
+                .Where(s => s.UserId == userId).ToListAsync();
             return Ok(_mapper.Map<IEnumerable<SubjectViewModel>>(subjects));
         }
 

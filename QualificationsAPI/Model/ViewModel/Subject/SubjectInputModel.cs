@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace QualificationsAPI.Model.ViewModel.Subject
 {
@@ -6,5 +6,6 @@ namespace QualificationsAPI.Model.ViewModel.Subject
     {
         [Required, MaxLength(10)]
         public string Code { get; set; }
+        public string UserId { get; set; }
     }
 }

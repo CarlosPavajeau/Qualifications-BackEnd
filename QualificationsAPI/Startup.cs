@@ -1,7 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -43,14 +42,14 @@ namespace QualificationsAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            app.UseCors(c =>
             {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+                c.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
             });
 
-            app.UseAuthorization();
-            app.UseAuthentication();
 
             app.UseSwagger();
             app.UseSwaggerUI(s =>
