@@ -1,6 +1,7 @@
-﻿using AutoMapper;
+using AutoMapper;
 using QualificationsAPI.Model;
 using QualificationsAPI.Model.ViewModel.Activity;
+using QualificationsAPI.Model.ViewModel.ApplicationUser;
 using QualificationsAPI.Model.ViewModel.Qualification;
 using QualificationsAPI.Model.ViewModel.Subject;
 
@@ -19,6 +20,9 @@ namespace QualificationsAPI.Mappers
             CreateMap<ActivityInputModel, Activity>();
             CreateMap<ActivityEditModel, Activity>();
             CreateMap<Activity, ActivityViewModel>();
+
+            CreateMap<ApplicationUserInputModel, ApplicationUser>();
+            CreateMap<ApplicationUser, ApplicationUserViewModel>();
         }
     }
 }

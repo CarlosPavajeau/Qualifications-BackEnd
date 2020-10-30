@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace QualificationsAPI.Model
@@ -21,16 +22,9 @@ namespace QualificationsAPI.Model
             }
         }
 
-        public bool AddQualification(Qualification qualification)
-        {
-            if (qualification is null)
-                return false;
+        public string UserId { get; set; }
 
-            if (qualification.Cort > 3 || qualification.Cort <= 0)
-                return false;
-
-            Qualifications[qualification.Cort - 1] = qualification;
-            return true;
-        }
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
     }
 }
