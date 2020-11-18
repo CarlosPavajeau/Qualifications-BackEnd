@@ -11,6 +11,16 @@ namespace QualificationsAPI.Data
 
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration(new ApplicationUserConfig());
+            builder.ApplyConfiguration(new UserLoginConfig());
+            builder.ApplyConfiguration(new IdentityUserTokenConfig());
+            builder.ApplyConfiguration(new IdentityRoleConfig());
+        }
+
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Qualification> Qualifications { get; set; }
         public DbSet<Activity> Activities { get; set; }
